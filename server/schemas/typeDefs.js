@@ -28,12 +28,12 @@ const typeDefs = `
     user: User!
   }
   type Query {
-    me: [User]
+    me: User
   }
 
   type Mutation {
     saveBook(book: BookInput!): User
-    createVote(_id: String!, techNum: Int!): Matchup
+    removeBook(_id: String!): User
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
   }
