@@ -11,8 +11,8 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: async (parent, { email, username, password }) => {
-      const user = await User.findOne({ $or: [{ username: username }, { email: email }] });
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
       if (!user) {
         throw AuthenticationError;
