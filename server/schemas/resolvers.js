@@ -29,6 +29,7 @@ const resolvers = {
       return { token, user };
     },
     addUser: async (parent, { username, email, password }) => {
+      console.log(username, email, password);
       const user = await User.create(
         {
           username,
@@ -48,12 +49,16 @@ const resolvers = {
       return updatedUser
     },
     removeBook: async (parent, { bookId }, context) => {
+      try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $pull: { savedBooks: { bookId: bookId } } },
         { new: true }
       );
       return updatedUser
+    } catch (error) {
+      console.error(error);
+    }
     },
   }
 };
